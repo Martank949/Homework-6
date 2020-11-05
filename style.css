@@ -2,4 +2,14 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.img {}
+.weatherDescription {
+    font-size: larger;
+}
+
+.temperature {
+    font-size: larger;
+}
+
+.location {
+    font-size: larger;
+}

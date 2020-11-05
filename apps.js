@@ -23,7 +23,7 @@ if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(setPosition, showError);
 } else {
     errNotEle.style.display = "block";
-    errNotEle.innerHTML = "<p>Browser doesn't Support Geolocation</p>";
+    errNotEle.innerHTML = "<p>User denied Geolocation</p>";
 }
 //display error if Geo service is down
 function showError(error) {
