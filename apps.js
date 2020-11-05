@@ -3,6 +3,7 @@ const weaImgEle = document.querySelector(".weatherImg");
 const temEle = document.querySelector(".temperature p");
 const weaDesEle = document.querySelector(".weatherDescription p");
 const locEle = document.querySelector(".location p");
+//const humidityElement = document.querySelector(".humidity")
 const errNotEle = document.querySelector(".errorNotification");
 //const humidityElement = document.querySelector(".humidity")
 //app data
@@ -36,9 +37,11 @@ function setPosition(position) {
 
     pullWeather(latitude, longitude);
 }
-// GET WEATHER FROM API PROVIDER
-function getWeather(latitude, longitude) {
+//fetching weather from API
+function pullWeather(latitude, longitude) {
     let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+
+    //console.log(api);
 
     fetch(api)
         .then(function(response) {
@@ -46,42 +49,22 @@ function getWeather(latitude, longitude) {
             return data;
         })
         .then(function(data) {
-            weather.temperature.value = Math.floor(data.main.temp - KELVIN);
+            weather.temperature.value = Math.floor(data.main.temp - kelvin);
             weather.description = data.weather[0].description;
+            //weather.humidity = data.main.humidity;
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.country = data.sys.country;
         })
         .then(function() {
-            displayWeather();
+            printWeatherData();
         });
 }
-
-// DISPLAY WEATHER TO UI
-function displayWeather() {
-    iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
-    tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-    descElement.innerHTML = weather.description;
-    locationElement.innerHTML = `${weather.city}, ${weather.country}`;
+//display weather to UI
+function printWeatherData() {
+    weaImgEle.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
+    temEle.innerHTML = `${weather.temperature.value}<span>C</span>`;
+    weaDesEle.innerHTML = weather.description;
+    //humidityElement.innerHTML = weather.humidity;
+    locEle.innerHTML = `${weather.city}, ${weather.country}`;
 }
-
-// C to F conversion
-function celsiusToFahrenheit(temperature) {
-    return (temperature * 9 / 5) + 32;
-}
-
-// WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
-tempElement.addEventListener("click", function() {
-    if (weather.temperature.value === undefined) return;
-
-    if (weather.temperature.unit == "celsius") {
-        let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
-        fahrenheit = Math.floor(fahrenheit);
-
-        tempElement.innerHTML = `${fahrenheit}°<span>F</span>`;
-        weather.temperature.unit = "fahrenheit";
-    } else {
-        tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-        weather.temperature.unit = "celsius"
-    }
-});
