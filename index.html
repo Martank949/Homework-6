@@ -13,48 +13,32 @@
 <body>
     <div class="container">
         <!--Card Section-->
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card" style="max-width: 100%; text-align: center;">
+            <div class="weatherImg">
+                <img src="icons/unknown.png" width="300" height="600" class="card-img-top" alt="Weather Icons"></div>
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <!--error notification-->
+                <h5 class="card-title errorNotification">Weather Now</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <!--temperature output-->
+                <li class="list-group-item temperature">
+                    <p>- &#8457;</p>
+                </li>
+                <!--location of the weather-->
+                <li class="list-group-item location">
+                    <p> - </p>
+                </li>
                 <li class="list-group-item">Vestibulum at eros</li>
             </ul>
+            <!--random links-->
             <div class="card-body">
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
             </div>
         </div>
         <!--END-->
-        <div class="weatherHeader">
-            <p>Weather</p>
-        </div>
-        <div class="notification"></div>
-        <div class="weatherContainer">
-            <div class="weatherIcon"><img src="icons/unknown.png" alt="Weather Icon"></div>
-            <div class="temperature-value">
-                <p>- &#8457;</p>
-            </div>
-            <!--<div class="humidity">
-                <p> Clouds: </p>
-            </div>-->
-            <div class="">
-                <p> - </p>
-            </div>
-            <div class="">
-                <p> - </p>
-            </div>
-            <div class="">
-                <p> - </p>
-            </div>
-            <div class="location">
-                <p> - </p>
-            </div>
-        </div>
     </div>
     <script src="apps.js"></script>
 </body>
