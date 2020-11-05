@@ -68,3 +68,22 @@ function printWeatherData() {
     //humidityElement.innerHTML = weather.humidity;
     locEle.innerHTML = `${weather.city}, ${weather.country}`;
 }
+//google conversion celsius <-> fahrenheit
+function googleConversion(temperature) {
+    return (temperature * 9 / 5) + 32;
+}
+//on click temp changer from celsius <-> fahrenheit
+temEle.addEventListener("click", function() {
+    if (weather.temperature.value === undefined) return;
+
+    if (weather.temperature.unit == "celsius") {
+        let fahrenheit = googleConversion(weather.temperature.value);
+        fahrenheit = Math.floor(fahrenheit);
+
+        temEle.innerHTML = `${fahrenheit}°<span>F</span>`;
+        weather.temperature.unit = "fahrenheit";
+    } else {
+        temEle.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        weather.temperature.unit = "celsius"
+    }
+});
