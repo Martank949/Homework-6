@@ -3,9 +3,9 @@ const weaImgEle = document.querySelector(".weatherImg");
 const temEle = document.querySelector(".temperature p");
 const weaDesEle = document.querySelector(".weatherDescription p");
 const locEle = document.querySelector(".location p");
-//const humidityElement = document.querySelector(".humidity")
+const humidityElement = document.querySelector(".humidity p")
 const errNotEle = document.querySelector(".errorNotification");
-//const humidityElement = document.querySelector(".humidity")
+const feelsLikeEle = document.querySelector(".feelsLike");
 //app data
 const weather = {};
 //C -> F const
@@ -51,7 +51,8 @@ function pullWeather(latitude, longitude) {
         .then(function(data) {
             weather.temperature.value = Math.floor(data.main.temp - kelvin);
             weather.description = data.weather[0].description;
-            //weather.humidity = data.main.humidity;
+            weather.humidity = data.main.humidity;
+            weather.feelsLike = Math.floor(data.main.feels_like - kelvin);
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.country = data.sys.country;
@@ -65,8 +66,10 @@ function printWeatherData() {
     weaImgEle.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
     temEle.innerHTML = `${weather.temperature.value}<span>C</span>`;
     weaDesEle.innerHTML = weather.description;
-    //humidityElement.innerHTML = weather.humidity;
+    humidityElement.innerHTML = `Humidity: ${weather.humidity}%`;
+    feelsLikeEle.innerHTML = `Feels Like: ${weather.feelsLike}`;
     locEle.innerHTML = `${weather.city}, ${weather.country}`;
+
 }
 //google conversion celsius <-> fahrenheit
 function googleConversion(temperature) {
