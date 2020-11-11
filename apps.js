@@ -63,8 +63,12 @@ function pullWeather(latitude, longitude) {
 }
 //display weather to UI
 function printWeatherData() {
-    weaImgEle.innerHTML = `<img src="Icons/${weather.iconId}.png"/>`;
-    temEle.innerHTML = `Click for fahrenheit:${weather.temperature.value}°<span>C</span>`;
+    weaImgEle.innerHTML = `<img src="Icons/${weather.iconId}.png"/>`; <<
+    << << < HEAD
+    temEle.innerHTML = `Click for fahrenheit:${weather.temperature.value}°<span>C</span>`; ===
+    === =
+    temEle.innerHTML = `${weather.temperature.value}<span>C</span>`; >>>
+    >>> > 3393 b28916fa018389a0578918856cae3ddb6e64
     weaDesEle.innerHTML = weather.description;
     humidityElement.innerHTML = `Humidity: ${weather.humidity}%`;
     feelsLikeEle.innerHTML = `Click for fahrenheit: ${weather.feelsLike}°<span>C</span>`;

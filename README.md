@@ -13,4 +13,4 @@ https://openweathermap.org/current
 
 2) This application only works (at the moment) with the users Geo location. If the user denies access, the application will not work
 
-3)it works on my computer but when i click on the url on this page it doesn't do anything... Please help
+3) If you click on the temperatures they will change from celsius to fahrenheit
