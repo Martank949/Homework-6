@@ -63,7 +63,7 @@ function pullWeather(latitude, longitude) {
 }
 //display weather to UI
 function printWeatherData() {
-    weaImgEle.innerHTML = `<img src="/Icons/${weather.iconId}.png"/>`;
+    weaImgEle.innerHTML = `<img src="Icons/${weather.iconId}.png"/>`;
     temEle.innerHTML = `${weather.temperature.value}<span>C</span>`;
     weaDesEle.innerHTML = weather.description;
     humidityElement.innerHTML = `Humidity: ${weather.humidity}%`;
