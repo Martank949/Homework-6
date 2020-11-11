@@ -39,7 +39,7 @@ function setPosition(position) {
 }
 //fetching weather from API
 function pullWeather(latitude, longitude) {
-    let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
 
     //console.log(api);
 
@@ -63,11 +63,11 @@ function pullWeather(latitude, longitude) {
 }
 //display weather to UI
 function printWeatherData() {
-    weaImgEle.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
-    temEle.innerHTML = `${weather.temperature.value}<span>C</span>`;
+    weaImgEle.innerHTML = `<img src="Icons/${weather.iconId}.png"/>`;
+    temEle.innerHTML = `Click for fahrenheit:${weather.temperature.value}°<span>C</span>`;
     weaDesEle.innerHTML = weather.description;
     humidityElement.innerHTML = `Humidity: ${weather.humidity}%`;
-    feelsLikeEle.innerHTML = `Feels Like: ${weather.feelsLike}`;
+    feelsLikeEle.innerHTML = `Click for fahrenheit: ${weather.feelsLike}°<span>C</span>`;
     locEle.innerHTML = `${weather.city}, ${weather.country}`;
 
 }
@@ -83,10 +83,25 @@ temEle.addEventListener("click", function() {
         let fahrenheit = googleConversion(weather.temperature.value);
         fahrenheit = Math.floor(fahrenheit);
 
-        temEle.innerHTML = `${fahrenheit}°<span>F</span>`;
+        temEle.innerHTML = `Temperature Is: ${fahrenheit}°<span>F</span>`;
         weather.temperature.unit = "fahrenheit";
     } else {
-        temEle.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        temEle.innerHTML = `Temperature Is: ${weather.temperature.value}<span>°C</span>`;
+        weather.temperature.unit = "celsius"
+    }
+});
+//on click temp changer for "feels like" from celsius <-> fahrenheit
+feelsLikeEle.addEventListener("click", function() {
+    if (weather.temperature.value === undefined) return;
+
+    if (weather.temperature.unit == "celsius") {
+        let fahrenheit = googleConversion(weather.feelsLike);
+        fahrenheit = Math.floor(fahrenheit);
+
+        feelsLikeEle.innerHTML = `Feels Like: ${fahrenheit}°<span>F</span>`;
+        weather.temperature.unit = "fahrenheit";
+    } else {
+        feelsLikeEle.innerHTML = `Feels Like: ${weather.feelsLike}°<span>C</span>`;
         weather.temperature.unit = "celsius"
     }
 });
